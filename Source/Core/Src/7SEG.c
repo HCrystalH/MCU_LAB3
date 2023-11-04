@@ -36,37 +36,37 @@ void update_display(int* display_flag){
 	switch (*display_flag){
 		case 0:{
 			(*display_flag)++;
-			HAL_GPIO_WritePin(GPIOB, EN_SEG_VER1_Pin, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOB, EN_SEG_VER2_Pin, GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(GPIOB, EN_SEG_HOR1_Pin, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOB, EN_SEG_HOR2_Pin, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOB, EN_7SEG_VER1_Pin, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOB, EN_7SEG_VER2_Pin, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOB, EN_7SEG_HORI1_Pin, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOB, EN_7SEG_HORI2_Pin, GPIO_PIN_SET);
 			display7SEG(led_buffer[1]);
 			break;
 		}
 		case 1:{
 			(*display_flag)++;
-			HAL_GPIO_WritePin(GPIOB, EN_SEG_VER1_Pin, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOB, EN_SEG_VER2_Pin, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOB, EN_SEG_HOR1_Pin, GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(GPIOB, EN_SEG_HOR2_Pin, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOB, EN_7SEG_VER1_Pin, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOB, EN_7SEG_VER2_Pin, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOB, EN_7SEG_HORI1_Pin, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOB, EN_7SEG_HORI2_Pin, GPIO_PIN_SET);
 			display7SEG(led_buffer[2]);
 			break;
 		}
 		case 2:{
 			(*display_flag)++;
-			HAL_GPIO_WritePin(GPIOB, EN_SEG_VER1_Pin, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOB, EN_SEG_VER2_Pin, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOB, EN_SEG_HOR1_Pin, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOB, EN_SEG_HOR2_Pin, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOB, EN_7SEG_VER1_Pin, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOB, EN_7SEG_VER2_Pin, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOB, EN_7SEG_HORI1_Pin, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOB, EN_7SEG_HORI2_Pin, GPIO_PIN_RESET);
 			display7SEG(led_buffer[3]);
 			break;
 		}
 		case 3:{
 			(*display_flag) = 0;
-			HAL_GPIO_WritePin(GPIOB, EN_SEG_VER1_Pin, GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(GPIOB, EN_SEG_VER2_Pin, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOB, EN_SEG_HOR1_Pin, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOB, EN_SEG_HOR2_Pin, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOB, EN_7SEG_VER1_Pin, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOB, EN_7SEG_VER2_Pin, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOB, EN_7SEG_HORI1_Pin, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOB, EN_7SEG_HORI2_Pin, GPIO_PIN_SET);
 			display7SEG(led_buffer[0]);
 			break;
 		}
@@ -77,12 +77,13 @@ void update_display(int* display_flag){
 }
 
 void init_7seg(){
-	HAL_GPIO_WritePin(GPIOB, EN_SEG_VER1_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB, EN_SEG_VER2_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOB, EN_SEG_HOR1_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOB, EN_SEG_HOR2_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOB, EN_7SEG_VER1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, EN_7SEG_VER2_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOB, EN_7SEG_HORI1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOB, EN_7SEG_HORI2_Pin, GPIO_PIN_SET);
 	display7SEG(led_buffer[0]);
 }
+
 void update_7seg_buffer(int vertical, int horizontal){
 	led_buffer[0] = (int)vertical/10;
 	led_buffer[1] = vertical%10;
