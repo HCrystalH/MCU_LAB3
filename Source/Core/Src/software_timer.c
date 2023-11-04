@@ -4,7 +4,7 @@
  *  Created on: Oct 22, 2023
  *      Author: Admin
  */
-
+#include "main.h"
 #include "software_timer.h"
 
 int timer1_counter =0;
@@ -37,3 +37,12 @@ void timerRun(){
 		timer1_flag =1;
 	}
 }
+
+// Timer interrupt callback function
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+	if(htim->Instance == TIM2){
+		button_reading();
+	}
+}
+

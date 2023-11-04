@@ -16,4 +16,7 @@ void setTimer1(int duration, int interrupt_cycle);
 void setTimer2(int duration);
 void setTimer3(int duration);
 void timerRun();
+
+void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef* htim);
+
 #endif /* INC_SOFTWARE_TIMER_H_ */
