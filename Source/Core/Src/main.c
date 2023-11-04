@@ -19,7 +19,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
+#include "software_timer.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -56,7 +56,9 @@ static void MX_TIM2_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+//int interrupt_cycle = (int)((1+htim2.Init.Prescaler)*(1+htim2.Init.Period))/8000;
 
+//int interrupt_cycle = 0;
 /* USER CODE END 0 */
 
 /**
@@ -89,7 +91,9 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-
+  HAL_TIM_Base_Start_IT(&htim2);
+  int interrupt_cycle = (int)((1+htim2.Init.Prescaler)*(1+htim2.Init.Period))/8000;
+  setTimer1(500, interrupt_cycle);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -99,9 +103,12 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  if(HAL_GPIO_ReadPin(Button1_GPIO_Port,Button1_Pin) == GPIO_PIN_RESET){
-		  HAL_GPIO_TogglePin(PA11_GPIO_Port, PA11_Pin);
-	  }
+	HAL_GPIO_WritePin(GPIOA, EN_HORI1_Pin, RESET);
+
+	if(timer1_flag == 1){
+		setTimer1(500, interrupt_cycle);
+		HAL_GPIO_TogglePin(GPIOA, RED_HORIZONTAL_Pin |YELLOW_HORIZONTAL_Pin|GREEN_HORIZONTAL_Pin);
+	}
   }
   /* USER CODE END 3 */
 }
@@ -240,7 +247,9 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+	timerRun();
+}
 /* USER CODE END 4 */
 
 /**
