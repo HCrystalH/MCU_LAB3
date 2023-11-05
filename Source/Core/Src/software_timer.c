@@ -10,10 +10,12 @@
 int timer1_counter =0;
 int timer2_counter =0;
 int timer3_counter =0;
+int timer3_counter =0;
 
 int timer1_flag =0;
 int timer2_flag =0;
 int timer3_flag =0;
+int timer4_flag =0;
 
 void setTimer1(int duration,int interrupt_cycle){
 	timer1_counter = duration/interrupt_cycle;
@@ -28,6 +30,11 @@ void setTimer2(int duration){
 void setTimer3(int duration){
 	timer3_counter = duration;
 	timer3_flag = 0;
+}
+
+void setTimer4(int duration){
+	timer4_counter = duration;
+	timer4_flag = 0;
 }
 
 void timerRun(){

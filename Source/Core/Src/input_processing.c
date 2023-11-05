@@ -8,6 +8,8 @@
 
 #include "main.h"
 #include "input_reading.h"
+#include "7SEG.h"
+#include "light_system.h"
 
 enum ButtonState{BUTTON_RELEASED, BUTTON_PRESSED, BUTTON_PRESSED_MORE_THAN_1_SECOND} ;
 enum ButtonState buttonState = BUTTON_RELEASED;
