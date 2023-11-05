@@ -11,7 +11,7 @@
 
 int led_buffer[4];
 void update_7seg_buffer(int vertical, int horizontal);
-void init_7seg();
+void Init7SEG();
 void display7SEG(int number);
 void update_display(int* display_flag);
 

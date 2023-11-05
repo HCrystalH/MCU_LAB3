@@ -76,7 +76,7 @@ void update_display(int* display_flag){
 	}
 }
 
-void init_7seg(){
+void Init7SEG(){
 	HAL_GPIO_WritePin(GPIOB, EN_7SEG_VER1_Pin, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(GPIOB, EN_7SEG_VER2_Pin, GPIO_PIN_SET);
 	HAL_GPIO_WritePin(GPIOB, EN_7SEG_HORI1_Pin, GPIO_PIN_SET);

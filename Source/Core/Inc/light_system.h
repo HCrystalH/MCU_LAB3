@@ -20,8 +20,8 @@ int GetRedCycle();
 int GetYellowCycle();
 int GetGreenCycle();
 
-void traffic_light();
-void init_traffic_light();
+void TrafficLight();
+void InitTrafficLight();
 
 void DisplayRedLight();
 void DisplayYellowLight();

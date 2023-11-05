@@ -93,8 +93,7 @@ int main(void)
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
-  int interrupt_cycle = (int)((1+htim2.Init.Prescaler)*(1+htim2.Init.Period))/8000;
-  setTimer1(500, interrupt_cycle);
+  InitTrafficLight();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -104,12 +103,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	HAL_GPIO_WritePin(GPIOA, EN_HORI1_Pin, RESET);
-
-	if(timer1_flag == 1){
-		setTimer1(500, interrupt_cycle);
-		HAL_GPIO_TogglePin(GPIOA, RED_HORIZONTAL_Pin |YELLOW_HORIZONTAL_Pin|GREEN_HORIZONTAL_Pin);
-	}
+	fsm_for_input_processing();
   }
   /* USER CODE END 3 */
 }
