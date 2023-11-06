@@ -91,9 +91,22 @@ void fsm_for_input_processing(void){
 	}
 	case MODE3:{
 		// Modify Yellow(Amber)
+		if(is_button_pressed(1) == 1){
+			int temp = GetYellowCycle()/1000;
+			temp++;
+			if(temp > 99) temp =0;
+			SetYellowCycle(temp*1000);
+		}
+
 		update_7seg_buffer(GetYellowCycle()/1000, 3);
 		Scan4LEDs();
 		DisplayYellowLight();
+
+		if(is_button_pressed(2) == 1){
+			if(GetRedCycle() != ( GetYellowCycle() + GetGreenCycle() ) ){
+				SetGreenCycle(GetRedCycle() - GetYellowCycle());
+			}
+		}
 		if(is_button_pressed(0) == 1){
 			mode = MODE4;
 		}
