@@ -55,13 +55,13 @@ void timerRun(){
 		timer1_flag =1;
 	}
 	if(timer2_counter <=0){
-			timer1_flag =1;
+		timer2_flag =1;
 	}
 	if(timer3_counter <=0){
-			timer1_flag =1;
+		timer3_flag =1;
 	}
 	if(timer4_counter <=0){
-			timer1_flag =1;
+		timer4_flag =1;
 	}
 }
 

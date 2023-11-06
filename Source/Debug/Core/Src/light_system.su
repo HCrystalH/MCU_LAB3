@@ -5,9 +5,9 @@ light_system.c:36:5:GetRedCycle	4	static
 light_system.c:40:5:GetYellowCycle	4	static
 light_system.c:44:5:GetGreenCycle	4	static
 light_system.c:49:6:DisplayRedLight	8	static
-light_system.c:61:6:DisplayYellowLight	8	static
-light_system.c:73:6:DisplayGreenLight	8	static
-light_system.c:85:6:Scan2LEDs	16	static
-light_system.c:92:6:Scan4LEDs	8	static
-light_system.c:100:6:InitTrafficLight	16	static
-light_system.c:129:6:TrafficLight	24	static
+light_system.c:62:6:DisplayYellowLight	8	static
+light_system.c:75:6:DisplayGreenLight	8	static
+light_system.c:88:6:Scan2LEDs	16	static
+light_system.c:95:6:Scan4LEDs	8	static
+light_system.c:103:6:InitTrafficLight	16	static
+light_system.c:133:6:TrafficLight	24	static

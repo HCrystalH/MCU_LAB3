@@ -48,36 +48,39 @@ int GetGreenCycle(){
 
 void DisplayRedLight(){
 	// Turn on Red LEDs
-	HAL_GPIO_WritePin(GPIOA, RED_HORIZONTAL_Pin|RED_VERTICAL_Pin, RESET);
+	HAL_GPIO_WritePin(GPIOA, RED_HORIZONTAL_Pin|RED_VERTICAL_Pin, GPIO_PIN_RESET);
 	// Turn off other LEDs
 	HAL_GPIO_WritePin(GPIOA, YELLOW_HORIZONTAL_Pin|YELLOW_VERTICAL_Pin|
-					GREEN_HORIZONTAL_Pin|GREEN_VERTICAL_Pin, SET);
+					GREEN_HORIZONTAL_Pin|GREEN_VERTICAL_Pin, GPIO_PIN_SET);
+	// Blink
 	if(timer2_flag == 1){
-		setTimer2(100, GetInterruptCycle());
+		setTimer2(1000, GetInterruptCycle());
 		HAL_GPIO_TogglePin(GPIOA, EN_HORI1_Pin|EN_HORI2_Pin|EN_VER1_Pin|EN_VER2_Pin);
 	}
 }
 
 void DisplayYellowLight(){
 	// Turn on Yellow LEDs
-	HAL_GPIO_WritePin(GPIOA, YELLOW_HORIZONTAL_Pin|YELLOW_VERTICAL_Pin, RESET);
+	HAL_GPIO_WritePin(GPIOA, YELLOW_HORIZONTAL_Pin|YELLOW_VERTICAL_Pin, GPIO_PIN_RESET);
 	// Turn off other LEDs
 	HAL_GPIO_WritePin(GPIOA, RED_HORIZONTAL_Pin|RED_VERTICAL_Pin|
-					GREEN_HORIZONTAL_Pin|GREEN_VERTICAL_Pin, SET);
+					GREEN_HORIZONTAL_Pin|GREEN_VERTICAL_Pin, GPIO_PIN_SET);
+	// Blink
 	if(timer2_flag == 1){
-		setTimer2(100, GetInterruptCycle());
+		setTimer2(1000, GetInterruptCycle());
 		HAL_GPIO_TogglePin(GPIOA, EN_HORI1_Pin|EN_HORI2_Pin|EN_VER1_Pin|EN_VER2_Pin);
 	}
 }
 
 void DisplayGreenLight(){
 	// Turn on Green LEDs
-	HAL_GPIO_WritePin(GPIOA, GREEN_HORIZONTAL_Pin|GREEN_VERTICAL_Pin, RESET);
+	HAL_GPIO_WritePin(GPIOA, GREEN_HORIZONTAL_Pin|GREEN_VERTICAL_Pin, GPIO_PIN_RESET);
 	// Turn off other LEDs
 	HAL_GPIO_WritePin(GPIOA, RED_HORIZONTAL_Pin|RED_VERTICAL_Pin|
-					YELLOW_HORIZONTAL_Pin|YELLOW_VERTICAL_Pin, SET);
+					YELLOW_HORIZONTAL_Pin|YELLOW_VERTICAL_Pin, GPIO_PIN_SET);
+	// Blink
 	if(timer2_flag == 1){
-		setTimer2(100, GetInterruptCycle());
+		setTimer2(1000, GetInterruptCycle());
 		HAL_GPIO_TogglePin(GPIOA, EN_HORI1_Pin|EN_HORI2_Pin|EN_VER1_Pin|EN_VER2_Pin);
 	}
 }
@@ -108,10 +111,9 @@ void InitTrafficLight(){
 	HAL_GPIO_WritePin(GPIOA, EN_VER1_Pin|EN_HORI1_Pin, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(GPIOA, EN_VER2_Pin|EN_HORI2_Pin, GPIO_PIN_SET);
 
-	// initialize cycles
-	SetRedCycle(INIT_RED);
-	SetYellowCycle(INIT_YELLOW);
-	SetGreenCycle(INIT_GREEN);
+	//
+	VERTICAL = RED;
+	HORIZONTAL = GREEN;
 
 	setTimer1(red_cycle,GetInterruptCycle());
 	setTimer3(green_cycle,GetInterruptCycle());
@@ -123,6 +125,8 @@ void InitTrafficLight(){
 	// Turn on the 1st 7Segment LED, for scan LED
 	Init7SEG();
 	display_flag = 0;
+
+
 }
 
 
@@ -135,9 +139,9 @@ void TrafficLight(){
 
 	switch(VERTICAL){
 		case RED:{
-			HAL_GPIO_WritePin(GPIOA, RED_VERTICAL_Pin, RESET);
+			HAL_GPIO_WritePin(GPIOA, RED_VERTICAL_Pin, GPIO_PIN_RESET);
 			Scan2LEDs(EN_VER1_Pin, EN_VER2_Pin);
-			HAL_GPIO_WritePin(GPIOA,YELLOW_VERTICAL_Pin | GREEN_VERTICAL_Pin , SET);
+			HAL_GPIO_WritePin(GPIOA,YELLOW_VERTICAL_Pin | GREEN_VERTICAL_Pin , GPIO_PIN_SET);
 			if(timer1_flag == 1){
 				VERTICAL = GREEN;
 				setTimer1(green_cycle, GetInterruptCycle());
@@ -145,9 +149,9 @@ void TrafficLight(){
 			break;
 		}
 		case GREEN:{
-			HAL_GPIO_WritePin(GPIOA, GREEN_VERTICAL_Pin, RESET);
+			HAL_GPIO_WritePin(GPIOA, GREEN_VERTICAL_Pin, GPIO_PIN_RESET);
 			Scan2LEDs(EN_VER1_Pin, EN_VER2_Pin);
-			HAL_GPIO_WritePin(GPIOA,RED_VERTICAL_Pin | YELLOW_VERTICAL_Pin , SET);
+			HAL_GPIO_WritePin(GPIOA,RED_VERTICAL_Pin | YELLOW_VERTICAL_Pin , GPIO_PIN_SET);
 			if(timer1_flag == 1){
 				VERTICAL = YELLOW;
 				setTimer1(yellow_cycle, GetInterruptCycle());
@@ -155,9 +159,9 @@ void TrafficLight(){
 			break;
 		}
 		case YELLOW:{
-			HAL_GPIO_WritePin(GPIOA, YELLOW_VERTICAL_Pin, RESET);
+			HAL_GPIO_WritePin(GPIOA, YELLOW_VERTICAL_Pin, GPIO_PIN_RESET);
 			Scan2LEDs(EN_VER1_Pin, EN_VER2_Pin);
-			HAL_GPIO_WritePin(GPIOA,RED_VERTICAL_Pin | GREEN_VERTICAL_Pin , SET);
+			HAL_GPIO_WritePin(GPIOA,RED_VERTICAL_Pin | GREEN_VERTICAL_Pin , GPIO_PIN_SET);
 			if(timer1_flag == 1){
 				VERTICAL = RED;
 				setTimer1(red_cycle, GetInterruptCycle());
@@ -171,9 +175,9 @@ void TrafficLight(){
 
 	switch(HORIZONTAL){
 		case RED:{
-			HAL_GPIO_WritePin(GPIOA, RED_HORIZONTAL_Pin, RESET);
+			HAL_GPIO_WritePin(GPIOA, RED_HORIZONTAL_Pin, GPIO_PIN_RESET);
 			Scan2LEDs(EN_HORI1_Pin, EN_HORI2_Pin);
-			HAL_GPIO_WritePin(GPIOA,YELLOW_HORIZONTAL_Pin|GREEN_HORIZONTAL_Pin , SET);
+			HAL_GPIO_WritePin(GPIOA,YELLOW_HORIZONTAL_Pin|GREEN_HORIZONTAL_Pin , GPIO_PIN_SET);
 			if(timer3_flag == 1){
 				HORIZONTAL = GREEN;
 				setTimer3(green_cycle,GetInterruptCycle());
@@ -181,9 +185,9 @@ void TrafficLight(){
 			break;
 		}
 		case GREEN:{
-			HAL_GPIO_WritePin(GPIOA, GREEN_HORIZONTAL_Pin, RESET);
+			HAL_GPIO_WritePin(GPIOA, GREEN_HORIZONTAL_Pin, GPIO_PIN_RESET);
 			Scan2LEDs(EN_HORI1_Pin, EN_HORI2_Pin);
-			HAL_GPIO_WritePin(GPIOA,YELLOW_HORIZONTAL_Pin|RED_HORIZONTAL_Pin , SET);
+			HAL_GPIO_WritePin(GPIOA,YELLOW_HORIZONTAL_Pin|RED_HORIZONTAL_Pin , GPIO_PIN_SET);
 			if(timer3_flag == 1){
 				HORIZONTAL = YELLOW;
 				setTimer3(yellow_cycle,GetInterruptCycle());
@@ -191,9 +195,9 @@ void TrafficLight(){
 			break;
 		}
 		case YELLOW:{
-			HAL_GPIO_WritePin(GPIOA, YELLOW_HORIZONTAL_Pin, RESET);
+			HAL_GPIO_WritePin(GPIOA, YELLOW_HORIZONTAL_Pin, GPIO_PIN_RESET);
 			Scan2LEDs(EN_HORI1_Pin, EN_HORI2_Pin);
-			HAL_GPIO_WritePin(GPIOA,RED_HORIZONTAL_Pin|GREEN_HORIZONTAL_Pin , SET);
+			HAL_GPIO_WritePin(GPIOA,RED_HORIZONTAL_Pin|GREEN_HORIZONTAL_Pin , GPIO_PIN_SET);
 			if(timer3_flag == 1){
 				HORIZONTAL = RED;
 				setTimer3(red_cycle,GetInterruptCycle());

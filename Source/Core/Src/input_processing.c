@@ -78,7 +78,7 @@ void fsm_for_input_processing(void){
 	}
 	case MODE3:{
 		// Modify Yellow(Amber)
-		update_7seg_buffer(GetYellowCycle(), 3);
+		update_7seg_buffer(GetYellowCycle()/1000, 3);
 		Scan4LEDs();
 		DisplayYellowLight();
 		if(is_button_pressed(0) == 1){
@@ -88,7 +88,7 @@ void fsm_for_input_processing(void){
 	}
 	case MODE4:{
 		// Modify Green
-		update_7seg_buffer(GetGreenCycle(), 4);
+		update_7seg_buffer(GetGreenCycle()/1000, 4);
 		Scan4LEDs();
 		DisplayGreenLight();
 		if(is_button_pressed(0) == 1){
@@ -96,7 +96,8 @@ void fsm_for_input_processing(void){
 		}
 		break;
 	}
-	default:
+	default:{
 		break;
+	}
 	}
 }
