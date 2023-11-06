@@ -119,8 +119,8 @@ void InitTrafficLight(){
 	setTimer3(green_cycle,GetInterruptCycle());
 
 	// 100: time scan ( for both traffic light and 7segment LED)
-	setTimer2(100,GetInterruptCycle());
-	setTimer4(100,GetInterruptCycle());
+	setTimer2(1000,GetInterruptCycle());
+	setTimer4(1000,GetInterruptCycle());
 
 	// Turn on the 1st 7Segment LED, for scan LED
 	Init7SEG();

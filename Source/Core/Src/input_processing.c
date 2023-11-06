@@ -53,12 +53,18 @@ enum SystemState{
 };
 
 enum SystemState mode = MODE1;
+int start_flag = 0;
 
 void fsm_for_input_processing(void){
 	switch(mode){
 	case MODE1:
 	{
 		// Normal mode
+		if(start_flag == 1){
+			InitTrafficLight();
+			start_flag = 0;
+		}
+
 		TrafficLight();
 		if(is_button_pressed(0) == 1){
 			mode = MODE2;
@@ -114,11 +120,25 @@ void fsm_for_input_processing(void){
 	}
 	case MODE4:{
 		// Modify Green
+		if(is_button_pressed(1) == 1){
+			int temp = GetGreenCycle()/1000;
+			temp++;
+			if( temp > 99 ) temp =0;
+			SetGreenCycle(temp*1000);
+		}
+
 		update_7seg_buffer(GetGreenCycle()/1000, 4);
 		Scan4LEDs();
 		DisplayGreenLight();
+		if(is_button_pressed(2) == 1){
+			if(GetRedCycle() != ( GetGreenCycle() + GetYellowCycle() )){
+				SetRedCycle( GetGreenCycle() + GetYellowCycle());
+			}
+		}
+
 		if(is_button_pressed(0) == 1){
 			mode = MODE1;
+			start_flag = 1;
 		}
 		break;
 	}
