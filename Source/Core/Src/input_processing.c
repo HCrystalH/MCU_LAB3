@@ -58,6 +58,7 @@ void fsm_for_input_processing(void){
 	switch(mode){
 	case MODE1:
 	{
+		// Normal mode
 		TrafficLight();
 		if(is_button_pressed(0) == 1){
 			mode = MODE2;
@@ -66,6 +67,7 @@ void fsm_for_input_processing(void){
 		break;
 	}
 	case MODE2:{
+		// Modify RED
 		update_7seg_buffer(GetRedCycle()/1000, 2);
 		Scan4LEDs();
 		DisplayRedLight();
@@ -75,6 +77,7 @@ void fsm_for_input_processing(void){
 		break;
 	}
 	case MODE3:{
+		// Modify Yellow(Amber)
 		update_7seg_buffer(GetYellowCycle(), 3);
 		Scan4LEDs();
 		DisplayYellowLight();
@@ -84,6 +87,7 @@ void fsm_for_input_processing(void){
 		break;
 	}
 	case MODE4:{
+		// Modify Green
 		update_7seg_buffer(GetGreenCycle(), 4);
 		Scan4LEDs();
 		DisplayGreenLight();
