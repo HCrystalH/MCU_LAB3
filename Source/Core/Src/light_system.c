@@ -19,8 +19,8 @@ enum TrafficLightState{
 int red_cycle = 0;
 int yellow_cycle = 0;
 int green_cycle = 0;
-enum TrafficLightState vertical = RED;
-enum TrafficLightState horizontal = GREEN;
+enum TrafficLightState VERTICAL = RED;
+enum TrafficLightState HORIZONTAL = GREEN;
 int display_flag;
 
 void SetRedCycle(int duration){
