@@ -68,9 +68,22 @@ void fsm_for_input_processing(void){
 	}
 	case MODE2:{
 		// Modify RED
+		if(is_button_pressed(1) == 1){
+			int temp = GetRedCycle()/1000;
+			temp++;
+			if(temp >99) temp = 0;
+			SetRedCycle(temp*1000);
+		}
+
 		update_7seg_buffer(GetRedCycle()/1000, 2);
 		Scan4LEDs();
 		DisplayRedLight();
+		if(is_button_pressed(2) == 1){
+			if(GetRedCycle() != ( GetYellowCycle() + GetGreenCycle() ) ){
+				SetGreenCycle(GetRedCycle() - GetYellowCycle());
+			}
+		}
+
 		if(is_button_pressed(0) == 1){
 			mode = MODE3;
 		}
