@@ -4,7 +4,7 @@
  *  Created on: Nov 5, 2023
  *      Author: Admin
  */
-#include "stdint.h"
+#include "main.h"
 
 #ifndef INC_LIGHT_SYSTEM_H_
 #define INC_LIGHT_SYSTEM_H_

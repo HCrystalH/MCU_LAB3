@@ -24,7 +24,7 @@ Core/Src/input_processing.o: ../Core/Src/input_processing.c \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
  ../Core/Inc/input_reading.h ../Core/Inc/7SEG.h \
- ../Core/Inc/light_system.h
+ ../Core/Inc/light_system.h ../Core/Inc/main.h
 
 ../Core/Inc/main.h:
 
@@ -81,3 +81,5 @@ Core/Src/input_processing.o: ../Core/Src/input_processing.c \
 ../Core/Inc/7SEG.h:
 
 ../Core/Inc/light_system.h:
+
+../Core/Inc/main.h:

@@ -21,6 +21,7 @@
 #include "main.h"
 #include "software_timer.h"
 #include "input_processing.h"
+#include "input_reading.h"
 #include "light_system.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -97,6 +98,7 @@ int main(void)
   SetRedCycle(INIT_RED);
   SetYellowCycle(INIT_YELLOW);
   SetGreenCycle(INIT_GREEN);
+
   InitTrafficLight();
   /* USER CODE END 2 */
 
