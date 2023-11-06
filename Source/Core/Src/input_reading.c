@@ -30,6 +30,7 @@ static uint8_t flagForButtonPress1s[N0_OF_BUTTONS];
 //after the button is pressed more than 1 second.
 static uint16_t counterForButtonPress1s[N0_OF_BUTTONS];
 int hold_counter = 0;
+uint16_t buttonArray[N0_OF_BUTTONS] = {BUTTON1_Pin,BUTTON2_Pin,BUTTON3_Pin};
 
 void button_reading(void){
 	/* Sample code*/
@@ -59,7 +60,7 @@ void button_reading(void){
 		// 3 button buffer for debouncing
 		debounceButtonBuffer0[i] = debounceButtonBuffer1[i];
 		debounceButtonBuffer1[i] = debounceButtonBuffer2[i];
-		debounceButtonBuffer2[i] = HAL_GPIO_ReadPin(GPIOB, BUTTON1_Pin);
+		debounceButtonBuffer2[i] = HAL_GPIO_ReadPin(GPIOB, buttonArray[i]);
 
 		//If a button is pressed, start counting
 		if( (debounceButtonBuffer1[i] == debounceButtonBuffer2[i]) && (debounceButtonBuffer0[i] == debounceButtonBuffer1[i]) ){
