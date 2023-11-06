@@ -18,12 +18,12 @@
 #define BUTTON_IS_PRESSED                  GPIO_PIN_RESET
 #define BUTTON_IS_RELEASED                 GPIO_PIN_SET
 //the buffer that the final result is stored after debouncing
-static GPIO_PinState buttonBuffer[N0_OF_BUTTONS] = {BUTTON_IS_RELEASE};
+static GPIO_PinState buttonBuffer[N0_OF_BUTTONS] = {BUTTON_IS_RELEASED};
 //we define two buffers for debouncing
-static GPIO_PinState debounceButtonBuffer0[N0_OF_BUTTONS]={BUTTON_IS_RELEASE};
-static GPIO_PinState debounceButtonBuffer1[N0_OF_BUTTONS]={BUTTON_IS_RELEASE};
-static GPIO_PinState debounceButtonBuffer2[N0_OF_BUTTONS]={BUTTON_IS_RELEASE};
-static GPIO_PinState debounceButtonBuffer3[N0_OF_BUTTONS]={BUTTON_IS_RELEASE};
+static GPIO_PinState debounceButtonBuffer0[N0_OF_BUTTONS]={BUTTON_IS_RELEASED};
+static GPIO_PinState debounceButtonBuffer1[N0_OF_BUTTONS]={BUTTON_IS_RELEASED};
+static GPIO_PinState debounceButtonBuffer2[N0_OF_BUTTONS]={BUTTON_IS_RELEASED};
+static GPIO_PinState debounceButtonBuffer3[N0_OF_BUTTONS]={BUTTON_IS_RELEASED};
 //we define a flag for a button pressed more than 1 second.
 static uint8_t flagForButtonPress1s[N0_OF_BUTTONS];
 //we define counter for automatically increasing the value
@@ -90,7 +90,7 @@ int is_button_pressed(uint8_t index){
 	if(index >= N0_OF_BUTTONS) return 0;
 
 	if(buttonBuffer[index] == BUTTON_IS_PRESSED){
-		buttonBuffer[index] == BUTTON_IS_RELEASED;
+		buttonBuffer[index] = BUTTON_IS_RELEASED;
 		return 1;
 	}else if(buttonBuffer[index] != BUTTON_IS_PRESSED){
 		return 0;

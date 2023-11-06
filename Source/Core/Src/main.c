@@ -21,6 +21,7 @@
 #include "main.h"
 #include "software_timer.h"
 #include "input_processing.h"
+#include "light_system.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -57,7 +58,7 @@ static void MX_TIM2_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-//int interrupt_cycle = (int)((1+htim2.Init.Prescaler)*(1+htim2.Init.Period))/8000;
+int interrupt_cycle = 0;
 
 //int interrupt_cycle = 0;
 /* USER CODE END 0 */
@@ -93,6 +94,9 @@ int main(void)
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
+  SetRedCycle(INIT_RED);
+  SetYellowCycle(INIT_YELLOW);
+  SetGreenCycle(INIT_GREEN);
   InitTrafficLight();
   /* USER CODE END 2 */
 
@@ -183,7 +187,7 @@ static void MX_TIM2_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN TIM2_Init 2 */
-
+  interrupt_cycle = (int)(((1+htim2.Init.Prescaler)*(1+htim2.Init.Period))/8000);
   /* USER CODE END TIM2_Init 2 */
 
 }
@@ -243,7 +247,14 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
-	timerRun();
+	if(htim->Instance == TIM2){
+		button_reading();
+		timerRun();
+	}
+}
+
+int GetInterruptCycle(){
+	return interrupt_cycle;
 }
 /* USER CODE END 4 */
 

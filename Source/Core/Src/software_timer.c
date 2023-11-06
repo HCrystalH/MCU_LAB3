@@ -10,7 +10,7 @@
 int timer1_counter =0;
 int timer2_counter =0;
 int timer3_counter =0;
-int timer3_counter =0;
+int timer4_counter =0;
 
 int timer1_flag =0;
 int timer2_flag =0;
@@ -64,15 +64,5 @@ void timerRun(){
 			timer1_flag =1;
 	}
 }
-int GetInterruptCycle(){
-	return (int)((1+htim2.Init.Prescaler)*(1+htim2.Init.Period))/8000;
-}
 
-// Timer interrupt callback function
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-	if(htim->Instance == TIM2){
-		button_reading();
-	}
-}
 

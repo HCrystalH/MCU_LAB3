@@ -23,6 +23,6 @@ int getTimer3();
 void timerRun();
 
 int GetInterruptCycle();
-void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef* htim);
+
 
 #endif /* INC_SOFTWARE_TIMER_H_ */

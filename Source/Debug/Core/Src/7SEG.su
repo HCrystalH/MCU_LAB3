@@ -1,0 +1,4 @@
+7SEG.c:12:6:display7SEG	296	static
+7SEG.c:35:6:update_display	16	static
+7SEG.c:79:6:Init7SEG	8	static
+7SEG.c:87:6:update_7seg_buffer	16	static

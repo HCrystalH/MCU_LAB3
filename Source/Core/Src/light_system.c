@@ -84,14 +84,14 @@ void DisplayGreenLight(){
 
 void Scan2LEDs(uint16_t led1, uint16_t led2){
 	if(timer2_flag == 1){
-		set_Timer2(100, get_interrupt_cycle());
+		setTimer2(100, GetInterruptCycle());
 		HAL_GPIO_TogglePin(GPIOA, led1|led2);
 	}
 }
 
 void Scan4LEDs(){
-	if(timer_flag4 == 1){
-		set_Timer4(100, get_interrupt_cycle());
+	if(timer4_flag == 1){
+		setTimer4(100, GetInterruptCycle());
 		update_display(&display_flag);
 	}
 }
@@ -105,8 +105,8 @@ void InitTrafficLight(){
 	HAL_GPIO_WritePin(GPIOA, YELLOW_HORIZONTAL_Pin | GREEN_HORIZONTAL_Pin, SET);
 
 	// initialize for scan traffic led
-	HAL_GPIO_WritePin(GPIOA, EN_VER1_Pin|EN_HORI_1_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOA, EN_VER_2_Pin|EN_HORI_2_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOA, EN_VER1_Pin|EN_HORI1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, EN_VER2_Pin|EN_HORI2_Pin, GPIO_PIN_SET);
 
 	// initialize cycles
 	SetRedCycle(INIT_RED);
@@ -118,12 +118,13 @@ void InitTrafficLight(){
 
 	// 100: time scan ( for both traffic light and 7segment LED)
 	setTimer2(100,GetInterruptCycle());
-	setTimer(100,GetInterruptCycle());
+	setTimer4(100,GetInterruptCycle());
 
 	// Turn on the 1st 7Segment LED, for scan LED
 	Init7SEG();
 	display_flag = 0;
 }
+
 
 void TrafficLight(){
 	int vertical = getTimer1()*GetInterruptCycle()/1000;

@@ -4,6 +4,7 @@
  *  Created on: Nov 5, 2023
  *      Author: Admin
  */
+#include "stdint.h"
 
 #ifndef INC_LIGHT_SYSTEM_H_
 #define INC_LIGHT_SYSTEM_H_
@@ -28,7 +29,7 @@ void DisplayYellowLight();
 void DisplayGreenLight();
 
 void Scan4LEDs();
-void Scan2LEDs(uint16_t led1, uint16_t led2);
+void Scan2LEDs(uint16_t led1,uint16_t led2);
 
 
 #endif /* INC_LIGHT_SYSTEM_H_ */

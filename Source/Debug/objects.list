@@ -1,3 +1,7 @@
+"./Core/Src/7SEG.o"
+"./Core/Src/input_processing.o"
+"./Core/Src/input_reading.o"
+"./Core/Src/light_system.o"
 "./Core/Src/main.o"
 "./Core/Src/software_timer.o"
 "./Core/Src/stm32f1xx_hal_msp.o"
